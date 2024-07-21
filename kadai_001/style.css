@@ -1,0 +1,113 @@
+
+/*google fonts
+.google-fonts {
+  font-family: "Noto Sans JP", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}*/
+
+html {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.headermn {
+    display: flex;
+    justify-content: space-between;
+}
+
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+    box-sizing: border-box;
+    display: flex;
+    align-content: center;
+}
+
+nav {
+    font-size: 34px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 32px 16px; 
+}
+
+h1 {
+    font-size: 34px;
+    border: solid;
+    
+}
+
+#mainimg {
+    width: 100%;
+}
+
+/*about,works共通*/
+.ttl1 {
+    text-align: center;
+    font-size: 34px;
+}
+
+/*about*/
+
+#about {
+    /*width: 820px;
+    height: 402px;*/
+    top: 800px;
+    left: 310px;
+}
+
+#about > #ab {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#name {
+    font-size: 24px;
+    list-style: none;
+}
+
+#prfl > ul {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+    
+
+/*works*/
+
+#works {
+    width: 752px;
+    height: 355px;
+    top: 1289px;
+    left: 344px;
+
+}
+
+#works > #wk {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#wk > .wb {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}
+
+#wk > .wb > p {
+    font-size: 18px;
+}
+
+footer {
+    text-align: center;
+    font-size: 18px;
+}
