@@ -6,8 +6,13 @@
       <div class="breadcrumbs_container">
         <div class="image_header">
           <div class="header_info">
-            <div>news</div>
-            <div>ニュース</div>
+            <?php
+              $cat = get_the_category();
+              $catslug = $cat[0]->slug;
+              $catname = $cat[0]->cat_name;
+            ?>
+            <div><?php echo $catslug; ?></div>
+            <div><?php echo $catname; ?></div>
           </div>
         </div>
       </div>
@@ -24,7 +29,7 @@
             <div class="tab_panels">
               <!-- Description -->
               <div class="tab_panel">
-                <div class="tab_panel_title">ニュース</div>
+                <div class="tab_panel_title"><?php echo $catname; ?></div>
                 <div class="tab_panel_content">
                   <div class="tab_panel_text">
                     <!-- news loop from here-->
@@ -34,15 +39,27 @@
                         <div class ="row">
                             <div class ="col-lg-2 col-md-2 col-sx-12">
                                 <div class ="calendar_news_border">
-                                    <div class ="calendar_newsborder_1">
+                                    <div class ="calendar_news_border_1">
                                         <div class ="calendar_month">
-                                            <?php echo get_post_time('F'); ?>
+                                            <?php
+                                              if( is_category('event') ) :
+                                                echo post_custom('month');
+                                              else:
+                                                echo get_post_time('F');
+                                              endif;
+                                             ?>
                                         </div>
                                         <div class ="calendar_day">
                                             <span>
-                                                <?php echo get_the_date('d'); ?>
+                                                <?php
+                                                if( is_category('event') ) :
+                                                  echo post_custom('day');
+                                                else:
+                                                  echo get_the_date('d');
+                                                endif;
+                                                ?>
                                             </span>
-                                        </div>
+                                          </div>
                                     </div>
                                 </div>
                                 <?php
@@ -74,6 +91,17 @@
                     <?php endwhile; ?>
                     <?php endif; ?>
                     <!--news loop until here-->
+
+                      <div class="news-pagination">
+                        <?php
+                         //記事一覧ページ用のページネーション
+                         echo paginate_links(array(
+                          'total' => $wp_query->max_num_pages,
+                          'prev_text' => '&lt;&lt;前へ',
+                          'next_text' => '次へ&gt;&gt',
+                         ));
+                        ?>
+                      </div>
                     
                   </div>
                 </div>
@@ -85,34 +113,7 @@
         <!-- Course Sidebar -->
         <div class="col-lg-4" style="background-color: #2b7b8e33">
           <!-- sidebar-main に切り出す -->
-          <div class="sidebar">
-            <div class="category">
-              <div class="section_title_container category_title">
-                <h2>CATEGORY</h2>
-                <div class="section_subtitle">カテゴリー</div>
-              </div>
-              <div class="sidebar_categories">
-                <ul>
-                  <li><a href="#">News ニュース</a></li>
-                  <li><a href="#">Event イベント</a></li>
-                  <li><a href="#">CampusLife 侍の学生</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="category">
-              <div class="section_title_container category_title">
-                <h2>Latest Post</h2>
-                <div class="section_subtitle">最新記事</div>
-              </div>
-              <div class="sidebar_categories">
-                <ul>
-                  <li><a href="#">AWS ハンズオンセミ…</a></li>
-                  <li><a href="#">AWS ハンズオンセミ…</a></li>
-                  <li><a href="#">AWS ハンズオンセミ…</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <?php get_sidebar(); ?>
           <!-- sidebar-main ここまで -->
         </div>
       </div>
